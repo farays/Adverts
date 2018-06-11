@@ -1,0 +1,29 @@
+<div id="modal{{ annonce.id }}" class="modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ annonce.titre }}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                {% if annonce.photo is not empty %}
+                <img src="{{ asset('uploads/media/images/'~annonce.getPhoto()) }}" alt="Image de l'annonce"  height="80" width="80"/>
+                {% endif %}
+                <p>{{ annonce.description }}</p>
+                <p>Prix : {{  annonce.prix }} </p>
+                <h3>Contact</h3>
+
+                <p>Posté par {{ annonce.Idclient.getNomprenom() }}</p>
+                <p>Tel : {{ annonce.Idclient.getEmail() }} </p>
+                <p>Email : {{ annonce.Idclient.getEmail() }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Contacter le prestatair par mail</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

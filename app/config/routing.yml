@@ -1,5 +1,7 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+ads_adverts:
+    resource: "@AdsAdvertsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -3,35 +3,48 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div>{{ 'Mot de passe trop court'}}</div>
 {% endif %}
 <div>
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    <p class="h4 text-center mb-4">Sign in</p>
-    {% if csrf_token %}
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    {% endif %}
-    <div class="md-form">
-        <i class="fa fa-envelope prefix grey-text"></i>
-    <input class="form-control" type="email" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
-        <label for="username">{{ 'security.login.username'|trans }}</label>
+    <div class="row">
+        <ul class="nav grey lighten-4 py-4">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{path('home') }}"><i class="fa fa-home prefix grey-text"></i></a>
+            </li>
+        </ul>
 
     </div>
+    <div class="row" style="margin-bottom: 50px">
+        <div class="col-md-6 offset-3">
+            <form action="{{ path("fos_user_security_check") }}" method="post">
+                <p class="h4 text-center mb-4">Sign in</p>
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                <input class="form-control" type="email" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+                    <label for="username">{{ 'security.login.username'|trans }}</label>
 
-    <div class="md-form">
-        <i class="fa fa-lock prefix grey-text"></i>
-        <input type="password" id="password" name="_password" required="required" autocomplete="current-password" class="form-control">
-        <label for="password">{{ 'security.login.password'|trans }}</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="password" name="_password" required="required" autocomplete="current-password" class="form-control">
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                </div>
+
+
+                <div class="text-center mt-4">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+                    <input class="btn btn-default rondeur" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                    <br><p><a href="{{ path('fos_user_registration_register') }}">Vous êtes nouveau? Inscrivez-vous ici</a></p>
+
+                </div>
+
+            </form>
+        </div>
     </div>
-
-
-    <div class="text-center mt-4">
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-
-        <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-    </div>
-
-
-</form>
 </div>

@@ -1,0 +1,63 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="row">
+    <ul class="nav grey lighten-4 py-4">
+        <li class="nav-item">
+            <a class="nav-link active" href="{{path('home') }}"><i class="fa fa-home prefix grey-text"></i></a>
+        </li>
+    </ul>
+</div>
+      <div class="row">
+            <div class="col-md-6 offset-3">
+                <div class="header text-center">
+                    <h4 class="title w-100 font-weight-bold">Sign up</h4>
+                </div>
+                <hr>
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                <div class="md-form mb-5">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    {{ form_widget(form.nomprenom,{attr:{"class":"form-control"}}) }}
+                    {{ form_label(form.nomprenom) }}
+                    {{ form_errors(form.nomprenom) }}
+                </div>
+                <div class="md-form mb-5">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    {{ form_widget(form.email,{attr:{"class":"form-control"}}) }}
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+
+                <div class="md-form mb-5">
+                    <i class="fa fa-phone prefix grey-text"></i>
+                    {{ form_widget(form.tel,{attr:{"class":"form-control"}}) }}
+                    {{ form_label(form.tel) }}
+                    {{ form_errors(form.tel) }}
+                </div>
+
+                <div class="md-form mb-5">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    {{ form_widget(form.username,{attr:{"class":"form-control"}}) }}
+                    {{ form_label(form.username) }}
+                    {{ form_errors(form.username) }}
+                </div>
+
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    {{ form_widget(form.plainPassword.first,{attr:{"class":"form-control"}}) }}
+                    {{ form_label(form.plainPassword.first) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                </div>
+                <div class="md-form mb-4">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    {{ form_widget(form.plainPassword.second,{attr:{"class":"form-control"}}) }}
+                    {{ form_label(form.plainPassword.second) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                </div>
+                <hr>
+            <div class="text-center">
+                <button class="btn btn-deep-orange rondeur">Sign up</button>
+            </div>
+            {{ form_end(form) }}
+            </div>
+        </div>
+

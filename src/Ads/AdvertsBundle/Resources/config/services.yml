@@ -1,0 +1,18 @@
+parameters:
+    avatars_directory: '%kernel.project_dir%/web/uploads/media/images'
+
+services:
+
+#    Ads\AdvertsBundle\Service\FileUploader:
+#            arguments:
+#                $targetDir: '%avatars_directory%'
+    KinuInkAlumniBundle.registration_listener:
+        class: Ads\AdvertsBundle\EventListener\RegistrationListener
+        tags:
+            - { name: kernel.event_subscriber }
+
+    kinuinkalumnibundle.twig.extension:
+        class: Ads\AdvertsBundle\Twig\AnnonceTwigExtention
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }

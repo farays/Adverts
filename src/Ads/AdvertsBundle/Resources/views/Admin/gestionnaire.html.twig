@@ -1,0 +1,4 @@
+{% extends "@AdsAdverts/layout/gestbase.html.twig" %}
+{% block body %}
+    {% include '@AdsAdverts/Admin/tableviews.html.twig' with {categ: app.request.query.get('categ')}%}
+{% endblock %}

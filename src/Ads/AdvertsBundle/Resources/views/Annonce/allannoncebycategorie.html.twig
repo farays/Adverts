@@ -1,0 +1,39 @@
+{% extends "@AdsAdverts/layout/base.html.twig" %}
+{% block header %}
+    {% include '@AdsAdverts/layout/inc/header.html.twig' %}
+{% endblock %}
+{% block body %}
+
+    <table class="table table-borderless table-hover separation">
+
+        <tbody>
+        {% for affiche in get_annonce_by_categorie([categ])|slice(0,(get_annonce_by_categorie(['fashion'])|length+2))%}
+        <tr>
+            <td>
+                <div class="row">
+                    <div class="col-md-2">
+                        {% if affiche.photo is empty %}
+                            <img class="card-img-top" src="{{ asset('images/qmark.jpeg') }}" alt="Image de l'annonce" height="50" width="50">
+                            {% else %}
+                            <img class="card-img-top" src="{{ asset('uploads/media/images/'~affiche.getPhoto()) }}" alt="Image de l'annonce" height="50" width="50">
+                        {% endif %}
+                        {{ affiche.titre }}
+                    </div>
+                    <div class="col-md-3 offset-1">{{ affiche.description }}</div>
+                    <div class="col-md-2"><span class="badge badge-primary"><h5>{{ affiche.prix~' KMF'}}</h5></span> </div>
+                    <div class="col-md-3 offset-1">
+                        <p>Posté par {{ affiche.Idclient.getNomprenom() }}</p>
+                        <p>Tel : {{ affiche.Idclient.getEmail() }} </p>
+                        <p>Email : {{affiche.Idclient.getEmail() }}</p>
+                    </div>
+
+                </div>
+                </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block footer %}
+    {% include '@AdsAdverts/layout/inc/footer.html.twig' %}
+{% endblock %}

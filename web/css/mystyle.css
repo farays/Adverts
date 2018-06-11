@@ -21,3 +21,22 @@
 .carousel-caption {
     text-align:center;
 }
+.taillefont{
+    font-size:large
+}
+.separation
+{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.textcentral
+{
+    float:right;
+    margin-bottom: 200px
+}
+.espacedive
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}

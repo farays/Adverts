@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -27,43 +29,17 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="nomprenom", type="string", length=100)
+     * @ORM\Column(name="nomprenom", type="string", length=100,nullable=true)
      */
     private $nomprenom;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="login", type="string", length=100, unique=true)
-     */
-    private $login;
+
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mdpass", type="string", length=100)
-     */
-    private $mdpass;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="profil", type="string", length=20)
-     */
-    private $profil;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tel", type="string", length=25, unique=true)
+     * @ORM\Column(name="tel", type="string", length=25, unique=true,nullable=true)
      */
     private $tel;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=200, nullable=true, unique=true)
-     */
-    private $mail;
 
     /**
      * Get id
@@ -83,7 +59,7 @@ class User extends BaseUser
      */
     public function setNomprenom($nomprenom)
     {
-        $this->login = $nomprenom;
+        $this->nomprenom = $nomprenom;
 
         return $this;
     }
@@ -95,77 +71,6 @@ class User extends BaseUser
     public function getNomprenom()
     {
         return $this->nomprenom;
-    }
-    /**
-     * Set login
-     *
-     * @param string $login
-     *
-     * @return Client
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
-     * Get login
-     *
-     * @return string
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * Set mdpass
-     *
-     * @param string $mdpass
-     *
-     * @return Client
-     */
-    public function setMdpass($mdpass)
-    {
-        $this->mdpass = $mdpass;
-
-        return $this;
-    }
-
-    /**
-     * Get mdpass
-     *
-     * @return string
-     */
-    public function getMdpass()
-    {
-        return $this->mdpass;
-    }
-
-    /**
-     * Set profil
-     *
-     * @param string $profil
-     *
-     * @return Client
-     */
-    public function setProfil($profil)
-    {
-        $this->profil = $profil;
-
-        return $this;
-    }
-
-    /**
-     * Get profil
-     *
-     * @return string
-     */
-    public function getProfil()
-    {
-        return $this->profil;
     }
 
     /**
@@ -192,27 +97,4 @@ class User extends BaseUser
         return $this->tel;
     }
 
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     *
-     * @return Client
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
 }
