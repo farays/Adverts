@@ -22,13 +22,21 @@ class AnnonceRepository extends \Doctrine\ORM\EntityRepository
 //                 ORDER BYa.id DESC")->setMaxResults(4)->setFirstResult($offset)
 //            ->setParameters(['valnomcat'=>'emploi','valnomcatt'=>'evenement','valphoto'=>'null']);
 
-        return $query-> getResult();
+        return $query->getResult();
     }
 
     public function getAllAds()
     {
         $query = $this->getEntityManager()->createQuery("SELECT a FROM \Ads\AdvertsBundle\Entity\Annonce a LEFT JOIN \Ads\AdvertsBundle\Entity\Categorie c WITH a.idcategorie = c.id ORDER BY a.id DESC");
 
-        return $query-> getResult();
+        return $query->getResult();
    }
+
+    public function getMyAds($user)
+    {
+        // renvoie les annonce publier par un user donné
+        $query = $this->getEntityManager()->createQuery("SELECT a FROM \Ads\AdvertsBundle\Entity\Annonce a WHERE a.idclient = :validc ORDER BY a.id DESC")
+            ->setParameters(['validc'=>$user]);
+        return $query->getResult();
+    }
 }

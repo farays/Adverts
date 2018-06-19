@@ -80,3 +80,9 @@ fos_user:
     registration:
         form:
            type: AppBundle\Form\RegistrationType
+
+easy_admin:
+    entities:
+        - AppBundle\Entity\User
+        - Ads\AdvertsBundle\Entity\Annonce
+        - Ads\AdvertsBundle\Entity\Categorie

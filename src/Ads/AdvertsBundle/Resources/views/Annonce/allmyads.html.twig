@@ -1,0 +1,48 @@
+{% extends "@AdsAdverts/layout/base.html.twig" %}
+{% block header %}
+    {% include '@AdsAdverts/layout/inc/header.html.twig' %}
+{% endblock %}
+{% block body %}
+    <table class="table table-borderless table-hover separation">
+        <thead>
+
+        </thead>
+        <tbody>{% if app.user is not empty and myannonces is empty %}
+            <h2>Vous n'avais publié aucune annonce</h2>
+
+        {% else %}
+
+            {% for affiche in myannonces |slice(0,(myannonces|length+2))%}
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2">
+                                {% if affiche.photo is empty %}
+                                <img class="card-img-top" src="{{ asset('images/qmark.jpeg') }}" alt="Image de l'annonce" height="50" width="50">
+                                {% else %}
+                                <img class="card-img-top" src="{{ asset('uploads/media/images/'~affiche.getPhoto()) }}" alt="Image de l'annonce" height="50" width="50">
+                                {% endif %}
+                                {{ affiche.titre }}
+                            </div>
+
+                            <div class="col-md-2">{{ affiche.description }}</div>
+                            <div class="col-md-2">{{ affiche.datepub|date("m/d/Y")}}</div>
+                            <div class="col-md-2">{% if affiche.etat ==0 %}En cours...{% else %}accompli{% endif %}</div>
+                            <div class="col-md-"2>
+                                <p>Categorie {{ affiche.Idcategorie.getNomcate() }}</p>
+                            </div>
+                            <div class="col-md-1">
+                               <button class="btn rondeur"> <a href="{{ path('delete_annonce',{id:affiche.id}) }}" onclick="confirm('Etes vous sure de vouloir le supprimer ?');">Supprimer</a>
+                               </button>
+                                <button class="btn rondeur"><a href="#">Modifier</a></button>
+                            </div>
+
+
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

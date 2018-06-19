@@ -6,7 +6,7 @@ security:
 
     role_hierarchy:
           ROLE_ADMIN:       ROLE_USER
-          ROLE_SUPER_ADMIN: ROLE_ADMIN
+          ROLE_SUPER_ADMIN: [ROLE_ADMIN,ROLE_CLIENT]
           ROLE_CLIENT:       ROLE_CLIENT
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
@@ -44,8 +44,10 @@ security:
             - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-            - { path: ^/admin/, role: ROLE_ADMIN }
+            - { path: ^/admin/, role: ROLE_SUPER_ADMIN }
             - { path: ^/newannonce, role: ROLE_CLIENT }
-            - { path: ^/gest, role: ROLE_ADMIN }
+            - { path: ^/gest, role: ROLE_SUPER_ADMIN }
+            - { path: ^/naissam/, role: ROLE_SUPER_ADMIN }
+
 
 

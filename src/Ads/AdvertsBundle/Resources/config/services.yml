@@ -13,6 +13,6 @@ services:
 
     kinuinkalumnibundle.twig.extension:
         class: Ads\AdvertsBundle\Twig\AnnonceTwigExtention
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager","@form.factory"]
         tags:
             - { name: twig.extension }

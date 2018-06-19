@@ -22,15 +22,14 @@
                     <li class="nav-item">
                         <!-- Split button -->
                         <div class="btn-group">
-                            <button type="button" class="btn btn-danger">Mon compte</button>
-                            <button type="button" class="btn btn-danger dropdown-toggle px-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
+                            <button type="button" class="btn btn-default dropdown-toggle px-3" style="border-radius: 50px 50px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Mon compte<span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Deconnexion</a>
-                                <a class="dropdown-item" href="#">Mes annonces</a>
+                                <a class="dropdown-item" href="{{ path('fos_user_security_logout' )}}">Deconnexion</a>
+                                <a class="dropdown-item" href="{{ path('myads') }}">Mes annonces</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                <a class="dropdown-item" href="">Ma messagerie</a>
                             </div>
                         </div>
                         {#<a class="nav-link" href="{{ path('fos_user_security_logout') }}">Deconnexion</a>#}

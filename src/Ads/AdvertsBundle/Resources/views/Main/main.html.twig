@@ -287,7 +287,9 @@
 {% block scripts %}
     <script>
 
-
+        $('.hidde').click(function() {
+            $('.toclose').modal('hide');
+        });
         {#$( document ).ready(function(){#}
         {#getEmploi()#}
         {#var offset = 0;#}

@@ -1,4 +1,4 @@
-<div id="modal{{ annonce.id }}" class="modal" role="dialog">
+<div id="modal{{ annonce.id }}" class="modal toclose" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -20,10 +20,10 @@
                 <p>Email : {{ annonce.Idclient.getEmail() }}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Contacter le prestatair par mail</button>
+                <button type="button" class="btn btn-default hidde" data-dismiss="modal"data-toggle="modal" data-target="#exampleModal">Contacter le prestatair par mail</button>
             </div>
         </div>
 
     </div>
 </div>
-
+{% include '@AdsAdverts/Main/sendit.html.twig' with {annonce:annonce} %}
