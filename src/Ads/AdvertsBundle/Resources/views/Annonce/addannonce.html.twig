@@ -14,14 +14,13 @@
 
         <div class="modal-content">
 
-
             <div class="modal-header primary-color white-text justify-content-center">
                 <h4 class="title">
                     <i class="fa fa-pencil"></i>Publier une nouvelle annonce</h4>
             </div>
 
             <div class="modal-body col-md-10 offset-1">
-                {{ form_start(form, {'method': 'post', 'action': path('newannonce'), 'attr': {'class': 'newannonce'}}) }}
+                {{ form_start(form, {'method': 'post', 'action': path, 'attr': {'class': 'newannonce'}}) }}
 
                 <div class="md-form form-sm">
                     {{ form_widget(form.titre,{attr:{"class":"form-control form-control-sm"}}) }}

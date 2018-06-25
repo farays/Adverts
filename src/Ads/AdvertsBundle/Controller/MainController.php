@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class MainController extends Controller
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
@@ -20,6 +20,21 @@ class MainController extends Controller
         $emplois = $this->getDoctrine()
             ->getRepository('AdsAdvertsBundle:Annonce')->findAll();
         return $this->render('@AdsAdverts/Main/main.html.twig',['emploi'=>$emplois]);
+
+    }
+
+    /**
+     * @Route("/authoriz", name="authoriz")
+     */
+    public function authorizAction()
+    {
+        if($this->getUser()->hasRole("ROLE_SUPER_ADMIN"))
+        {
+           return $this->redirectToRoute('easyadmin');
+        }
+        else{
+            return $this->redirectToRoute('home');
+        }
 
     }
 
@@ -40,9 +55,5 @@ class MainController extends Controller
                 $i++;
         }
         return new JsonResponse($data);
-    }
-    public function emploiAction()
-    {
-
     }
 }

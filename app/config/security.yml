@@ -25,7 +25,7 @@ security:
                login_path:    fos_user_security_login
                check_path:    fos_user_security_check
                always_use_default_target_path : true
-               default_target_path: /home
+               default_target_path: /authoriz
                use_referer : true
                provider: fos_userbundle
                csrf_token_generator: security.csrf.token_manager

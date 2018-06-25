@@ -40,10 +40,11 @@ class AnnonceController extends Controller
              $entityManager->persist($annonce);
              $entityManager->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('myads');
         }
         return $this->render('@AdsAdverts/Annonce/addannonce.html.twig',array(
         'form' => $form->createView(),
+            'path' => $this->generateUrl('newannonce'),
     ));
     }
     /**
@@ -68,31 +69,9 @@ class AnnonceController extends Controller
         $entityManager->remove($annonce);
         $entityManager->flush();
         //return $this->render('@AdsAdverts/Admin/gestionnaire.html.twig');
-        return $this->redirectToRoute('gest');
+        return $this->redirectToRoute('myads');
     }
 
-    /**
-     * @Route("/contact", name="contacter")
-     */
-    public function sendmessager(Request $request)
-    {
-        $message = new Messagerie();
-
-        $msgform = $this->createForm(SendmessageType::class,$message);
-        $msgform->handleRequest($request);
-
-        if ($msgform->isSubmitted() && $msgform->isValid()) {
-            $message->setSender($this->getUser());
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($message);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('home');
-        }
-        return $this->render('@AdsAdverts/Main/main.html.twig',array(
-            'msgform' => $msgform->createView(),
-        ));
-    }
     /**
      * @Route("/myads" , name ="myads")
      */
@@ -102,5 +81,42 @@ class AnnonceController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $annonces = $entityManager->getRepository(Annonce::class)->getMyAds($leuser->getId());
         return $this->render('@AdsAdverts/Annonce/allmyads.html.twig',array('myannonces'=>$annonces));
+    }
+    /**
+     * @Route("/updateit/{id}", name = "updateit")
+     * @Method({"GET","POST"})
+     */
+    public function updateitAction(Annonce $annonce, Request $request)
+    {
+     //   $id = $request->query->get('toupdate');
+        $entityManager = $this->getDoctrine()->getManager();
+       // $annonce  = $entityManager->getRepository('AdsAdvertsBundle:Annonce')->find($id);
+
+        $form = $this->createForm(AddannonceType::class,$annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+//            $annonce = $form->getData();
+            $file = $annonce->getFile();
+            if($file !="")
+            {
+                if($file Instanceof UploadedFile )
+                {
+                    $fileUploader = new FileUploader($this->getParameter('avatars_directory'));
+                    $fileName = $fileUploader->upload($file, $annonce->getPhoto());
+                    $annonce->setPhoto($fileName);
+                }
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('myads');
+        }
+        return $this->render('@AdsAdverts/Annonce/addannonce.html.twig',array(
+            'form' => $form->createView(),
+            'path' => $this->generateUrl('updateit',['id'=>$annonce->getId()]),
+            'annonce'=>$annonce,
+        ));
     }
 }
