@@ -1,0 +1,42 @@
+#grad {
+    background: linear-gradient(to bottom right, red, yellow);
+}
+.couleur{
+    color: #FFBD6C;
+}
+.degrad {
+    background: linear-gradient(-90deg,#FC6763,#FFD46E);
+}
+.rondeur{
+    border-radius: 15px 50px;
+}
+.headercolor
+{
+    background : linear-gradient(180deg, #fff3e0, #ffffff);
+}
+.decoler
+{
+    margin-top: 5px
+}
+.carousel-caption {
+    text-align:center;
+}
+.taillefont{
+    font-size:large
+}
+.separation
+{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.textcentral
+{
+    float:right;
+    margin-bottom: 200px
+}
+.espacedive
+{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}

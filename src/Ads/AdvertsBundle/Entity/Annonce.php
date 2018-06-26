@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Annonce
  *
- * @ORM\Table(name="entity_annonce")
+ * @ORM\Table(name="adsadverts_bundle_annonces")
  * @ORM\Entity(repositoryClass="Ads\AdvertsBundle\Repository\Entity\AnnonceRepository")
  * @ORM\HasLifecycleCallbacks()
  */

@@ -8,7 +8,7 @@ use AppBundle\Entity\Annonce;
 /**
  * Client
  *
- * @ORM\Table(name="entity_client")
+ * @ORM\Table(name="adsadverts_bundle_clients")
  * @ORM\Entity(repositoryClass="Ads\AdvertsBundle\Repository\Entity\ClientRepository")
  */
 class Client
