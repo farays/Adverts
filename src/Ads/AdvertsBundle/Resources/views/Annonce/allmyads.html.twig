@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 {% if affiche.photo is empty %}
-                                <img class="card-img-top" src="{{ asset('images/qmark.jpeg') }}" alt="Image de l'annonce" height="50" width="50">
+                                <img class="card-img-top" src="{{ asset('bundles/app/images/qmark.jpeg') }}" alt="Image de l'annonce" height="50" width="50">
                                 {% else %}
                                 <img class="card-img-top" src="{{ asset('uploads/media/images/'~affiche.getPhoto()) }}" alt="Image de l'annonce" height="50" width="50">
                                 {% endif %}
