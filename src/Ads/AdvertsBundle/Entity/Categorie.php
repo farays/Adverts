@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Categorie
  *
- * @ORM\Table(name="entity_categorie")
+ * @ORM\Table(name="adsadverts_bundle_categories")
  * @ORM\Entity(repositoryClass="Ads\AdvertsBundle\Repository\Entity\CategorieRepository")
  */
 class Categorie

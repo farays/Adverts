@@ -1,13 +1,18 @@
 <?php
-namespace App\DataFixtures;
+namespace Ads\AdvertsBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class UserFixtures extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
-    public const ADMIN_USER_REFERENCE = 'admin-user';
+    
+    const REFERENCE_ADMIN_USER = 'adminuser';
 
     /** @var ContainerInterface */
     private $container;
@@ -29,19 +34,19 @@ class UserFixtures extends AbstractFixture implements OrderedFixtureInterface, C
      *
      * @param ObjectManager $manager
      */
-    public function load(ObjectManager $manager, $annonce_user)
+    public function load(ObjectManager $manager)
     {
         $tokenGenerator = $this->container->get('fos_user.util.token_generator');
         $password = 'admin';
 
-        $annonce_user = $this->createUser(
+        $admin_user = $this->createUser(
             $manager,
-            'annonce',
+            'admin',
             $password,
-            'annonce@domain.com',
-            $this->container->getParameter('en'),
+            'admin@domain.com',
+            $this->container->getParameter('fr'),
             array('ROLE_SUPER_ADMIN'),
-            array($manager->merge($this->getReference(GroupFixtures::REFERENCE_SUPERADMINS_GROUP))),
+            array(),
             true,
             true
         );
@@ -50,10 +55,10 @@ class UserFixtures extends AbstractFixture implements OrderedFixtureInterface, C
 
         $output = new ConsoleOutput();
         $output->writeln(array(
-            "<comment>  > ANNONCE user 'annonce' created with password '$password'</comment>",
+            "<comment>  > ADMIN user 'admin' created with password '$password'</comment>",
         ));
 
-        $this->setReference(self::REFERENCE_IUTUDC_USER, $annonce_user);
+        $this->setReference(self::REFERENCE_ADMIN_USER, $admin_user);
     }
 
     /**
