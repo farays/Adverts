@@ -54,7 +54,6 @@ class AnnonceController extends Controller
     {
 
         $categori = $request->query->get('categ');
-        dump($categori);
         return $this->render('@AdsAdverts/Annonce/allannoncebycategorie.html.twig',array('categ'=>$categori));
 
     }
